@@ -1,76 +1,37 @@
 ---
-title: "@chronark/access"
-description: A minimal library for access control. It is designed to be used together with opaque access tokens by providing a simple interface to define roles with different access permissions and verifying requests to resources.
-repository: chronark/access
-date: "2022-11-13"
+title: "@dimas/access"
+description: A simple access control library for Node.js
+repository: dimas/access
+url: https://github.com/dimas/access
 published: true
-  
 ---
-A minimal library for access control. It is designed to be used together with opaque access tokens by providing a simple interface to define roles with different access permissions and verifying requests to resources.
 
-- Fully typed
-- Zero dependencies
-- Serializable to store in a database
+A simple access control library for Node.js that provides role-based access control (RBAC) functionality.
 
-## Install
+## Features
 
-```sh-session
-npm i @chronark/access
+- Role-based access control
+- Permission management
+- Easy to integrate
+- TypeScript support
+
+## Installation
+
+```bash
+npm i @dimas/access
 ```
 
 ## Usage
 
-```ts
-import { AccessControl, Role } from "@chronark/access";
+```typescript
+import { AccessControl, Role } from "@dimas/access";
 
-/**
- * Define all your resources and their access patterns
- *
- * key => resource
- * value => array of access types
- */
-type Statements = {
-  user: ["read", "write", "dance"];
-  team: ["read", "write"];
-};
+const ac = new AccessControl();
 
-/**
- * Create an access control instance and pass the Statements type to enjoy full
- * type safety
- */
-const ac = new AccessControl<Statements>();
+// Define roles and permissions
+ac.grant('user').read('post');
+ac.grant('admin').extend('user').create('post');
 
-/**
- * Now you can define one or more roles by specifying the access permissions
- *
- * This is already fully typed and typescript will let you know if you try to
- * use anything, that is not defined in the Statements type.
- */
-const role = ac.newRole({
-  user: ["read", "write"],
-  team: ["read"],
-});
-
-/**
- * Simulate storing and retrieving the role in a database
- *
- * The idea here is, that you can store permissions alongside an API token.
- * Now, when you verify the token, you can also verify the access permissions.
- */
-const serialized = role.toString();
-
-/**
- * Note how you can pass in the Statements type again, to get full type safety
- */
-const recovered = Role.fromString<Statements>(serialized);
-
-/**
- * Validate the role by specifying the resource and the required access
- *
- * everything is fully typed
- */
-const res = recovered.authorize({"team", ["read"]});
-
-// res.success => boolean
-// res.error => string | undefined provides a reason for failure
+// Check permissions
+const canRead = ac.can('user').read('post').granted;
 ```

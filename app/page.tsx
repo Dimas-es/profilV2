@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Particles from "./components/particles";
+import { ArrowUpRight } from "lucide-react";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -29,23 +30,19 @@ export default function Home() {
         quantity={100}
       />
       <h1 className="py-3.5 px-0.5 z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ">
-        chronark
+        DIMASADJY.
       </h1>
-
       <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
       <div className="my-16 text-center animate-fade-in">
-        <h2 className="text-sm text-zinc-500 ">
-          I'm building{" "}
-          <Link
-            target="_blank"
-            href="https://unkey.dev"
-            className="underline duration-500 hover:text-zinc-300"
-          >
-            unkey.dev
-          </Link> to solve API authentication and authorization for developers.
-        </h2>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm text-zinc-400 hover:text-white transition-all duration-300 animate-fade-in group"
+        >
+          <span>View Resume</span>
+          <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+        </a>
       </div>
     </div>
   );
-
 }

@@ -5,21 +5,21 @@ import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chronark.com"),
+  metadataBase: new URL("https://dimas.com"),
   title: {
-    default: "chronark.com",
-    template: "%s | chronark.com",
+    default: "dimas.com",
+    template: "%s | dimas.com",
   },
   description: "Co-founder of unkey.dev and founder of planetfall.io",
   openGraph: {
-    title: "chronark.com",
+    title: "dimas.com",
     description:
       "Co-founder of unkey.dev and founder of planetfall.io",
-    url: "https://chronark.com",
-    siteName: "chronark.com",
+    url: "https://dimas.com",
+    siteName: "dimas.com",
     images: [
       {
-        url: "https://chronark.com/og.png",
+        url: "https://dimas.com/og.png",
         width: 1920,
         height: 1080,
       },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Chronark",
+    title: "Dimas",
     card: "summary_large_image",
   },
   icons: {
